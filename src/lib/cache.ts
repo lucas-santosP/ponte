@@ -1,12 +1,14 @@
 import { get, set } from "idb-keyval"
 import type { DictionaryResponse } from "./types"
 
+const CACHE_VERSION = 2
+
 function buildCacheKey(
   query: string,
   langA: string,
   langB: string,
 ): string {
-  return `ponte:${query.toLowerCase().trim()}:${langA}:${langB}`
+  return `ponte:v${CACHE_VERSION}:${query.toLowerCase().trim()}:${langA}:${langB}`
 }
 
 export async function getCachedResult(

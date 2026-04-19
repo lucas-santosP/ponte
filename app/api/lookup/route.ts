@@ -162,7 +162,7 @@ export async function POST(request: NextRequest) {
     const systemPrompt = buildSystemPrompt(languageA, languageB)
 
     const response = await genai.models.generateContent({
-      model: "gemini-2.5-flash",
+      model: "gemini-2.5-flash-lite",
       contents: query.trim(),
       config: {
         systemInstruction: systemPrompt,
@@ -189,7 +189,9 @@ export async function POST(request: NextRequest) {
 
     if (message.includes("429") || message.includes("RESOURCE_EXHAUSTED")) {
       return NextResponse.json(
-        { error: "Rate limit reached. Please wait a few seconds and try again." },
+        {
+          error: "Rate limit reached. Please wait a few seconds and try again.",
+        },
         { status: 429 },
       )
     }
