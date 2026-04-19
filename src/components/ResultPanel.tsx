@@ -175,7 +175,6 @@ function ResultPanel({ data, isSource, color, inputWord }: ResultPanelProps) {
 
       <div className="mt-auto space-y-3">
         <TagList label="Synonyms" items={data.synonyms} />
-        {"antonyms" in data && <TagList label="Antonyms" items={(data as LanguageResult).antonyms} />}
         <TagList label="Related" items={data.relatedWords} />
       </div>
     </div>

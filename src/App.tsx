@@ -122,14 +122,8 @@ function App() {
           <SpellSuggestion original={result.input} corrected={result.correctedInput} onAccept={handleQueryChange} />
         )}
 
-        {error && (
-          <div className="w-full rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-800 dark:bg-red-950/30 dark:text-red-300">
-            {error}
-          </div>
-        )}
-
         <div className="flex w-full gap-4 max-md:flex-col">
-          <div className="flex flex-1 flex-col gap-2">
+          <div className="flex flex-1 flex-col gap-4">
             <LanguageSelector
               value={pair.languageA}
               otherValue={pair.languageB}
@@ -156,7 +150,7 @@ function App() {
               />
             )}
           </div>
-          <div className="flex flex-1 flex-col gap-2">
+          <div className="flex flex-1 flex-col gap-4">
             <LanguageSelector
               value={pair.languageB}
               otherValue={pair.languageA}
@@ -185,6 +179,12 @@ function App() {
           </div>
         </div>
 
+        {error && (
+          <div className="w-full rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-800 dark:bg-red-950/30 dark:text-red-300">
+            {error}
+          </div>
+        )}
+
         {result && (
           <>
             {result.existsInBothLanguages && (
@@ -198,26 +198,6 @@ function App() {
             )}
 
             {result.usageExamples.length > 0 && <UsageExamples examples={result.usageExamples} />}
-
-            {result.pronunciation && (
-              <div className="w-full rounded-xl border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-                <h4 className="mb-2 text-xs font-semibold tracking-wide text-gray-500 uppercase dark:text-gray-400">
-                  Pronunciation
-                </h4>
-                <div className="flex gap-8 text-sm text-gray-600 dark:text-gray-300">
-                  {result.pronunciation.source && (
-                    <span>
-                      Source: <span className="font-mono">{result.pronunciation.source}</span>
-                    </span>
-                  )}
-                  {result.pronunciation.target && (
-                    <span>
-                      Target: <span className="font-mono">{result.pronunciation.target}</span>
-                    </span>
-                  )}
-                </div>
-              </div>
-            )}
           </>
         )}
 

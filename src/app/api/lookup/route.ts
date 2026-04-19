@@ -32,10 +32,9 @@ const responseSchema = {
           },
         },
         synonyms: { type: Type.ARRAY, items: { type: Type.STRING } },
-        antonyms: { type: Type.ARRAY, items: { type: Type.STRING } },
         relatedWords: { type: Type.ARRAY, items: { type: Type.STRING } },
       },
-      required: ["language", "languageName", "definitions", "synonyms", "antonyms", "relatedWords"],
+      required: ["language", "languageName", "definitions", "synonyms", "relatedWords"],
     },
     targetLanguage: {
       type: Type.OBJECT,
@@ -86,15 +85,6 @@ const responseSchema = {
       },
     },
     existsInBothLanguages: { type: Type.BOOLEAN, nullable: true },
-    pronunciation: {
-      type: Type.OBJECT,
-      nullable: true,
-      properties: {
-        source: { type: Type.STRING },
-        target: { type: Type.STRING },
-      },
-      required: ["source", "target"],
-    },
   },
   required: ["detectedLanguage", "input", "sourceLanguage", "targetLanguage", "usageExamples"],
 }
@@ -122,7 +112,7 @@ export async function POST(request: NextRequest) {
     const systemPrompt = buildSystemPrompt(languageA, languageB)
 
     const response = await genai.models.generateContent({
-      model: "gemini-2.5-flash-lite",
+      model: "gemma-4-31b-it",
       contents: query.trim(),
       config: {
         systemInstruction: systemPrompt,
@@ -131,12 +121,17 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    const text = response.text
-    if (!text) {
+    const raw = response.text
+    if (!raw) {
       return NextResponse.json({ error: "No response from AI" }, { status: 500 })
     }
 
-    const parsed: DictionaryResponse = JSON.parse(text)
+    const jsonMatch = raw.match(/\{[\s\S]*\}/)
+    if (!jsonMatch) {
+      return NextResponse.json({ error: "Failed to parse AI response" }, { status: 500 })
+    }
+
+    const parsed: DictionaryResponse = JSON.parse(jsonMatch[0])
     return NextResponse.json(parsed)
   } catch (error) {
     console.error("Lookup error:", error)

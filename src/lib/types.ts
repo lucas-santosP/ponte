@@ -16,7 +16,6 @@ export interface LanguageResult {
   languageName: string
   definitions: Definition[]
   synonyms: string[]
-  antonyms: string[]
   relatedWords: string[]
 }
 
@@ -50,10 +49,6 @@ export interface DictionaryResponse {
   usageExamples: UsageExample[]
   falseFriends?: FalseFriend[]
   existsInBothLanguages?: boolean
-  pronunciation?: {
-    source: string
-    target: string
-  }
 }
 
 export interface HistoryEntry {

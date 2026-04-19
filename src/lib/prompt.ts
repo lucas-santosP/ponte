@@ -20,8 +20,7 @@ Analyze the user's word or phrase and return structured linguistic data followin
    - Only leave correctedInput empty if the input is EXACTLY a real word as-is (correct spelling with correct accents).
 
 3. If the word exists in BOTH languages (even with different meanings), set existsInBothLanguages to true and provide definitions for both.
-4. If there are false friends (words that look similar between ${nameA} and ${nameB} but mean different things), include them in falseFriends. Only include if relevant.
-5. Provide IPA pronunciation for both source and target when possible.
-6. Keep definitions concise but informative. Provide 2-3 usage examples. Include up to 5 synonyms.
-7. Use the language codes "${langCodeA}" and "${langCodeB}" for the language fields.`
+4. Only include falseFriends if truly relevant — skip the field otherwise.
+5. Keep output concise: max 2 definitions per language, 2 example per definition, 3 synonyms, 3 relatedWords, 2 usageExamples.
+6. Use the language codes "${langCodeA}" and "${langCodeB}" for the language fields.`
 }
