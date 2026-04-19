@@ -35,14 +35,7 @@ const responseSchema = {
         antonyms: { type: Type.ARRAY, items: { type: Type.STRING } },
         relatedWords: { type: Type.ARRAY, items: { type: Type.STRING } },
       },
-      required: [
-        "language",
-        "languageName",
-        "definitions",
-        "synonyms",
-        "antonyms",
-        "relatedWords",
-      ],
+      required: ["language", "languageName", "definitions", "synonyms", "antonyms", "relatedWords"],
     },
     targetLanguage: {
       type: Type.OBJECT,
@@ -65,14 +58,7 @@ const responseSchema = {
         synonyms: { type: Type.ARRAY, items: { type: Type.STRING } },
         relatedWords: { type: Type.ARRAY, items: { type: Type.STRING } },
       },
-      required: [
-        "language",
-        "languageName",
-        "translations",
-        "definitions",
-        "synonyms",
-        "relatedWords",
-      ],
+      required: ["language", "languageName", "translations", "definitions", "synonyms", "relatedWords"],
     },
     usageExamples: {
       type: Type.ARRAY,
@@ -96,12 +82,7 @@ const responseSchema = {
           actuallyMeans: { type: Type.STRING },
           correctTranslation: { type: Type.STRING },
         },
-        required: [
-          "word",
-          "appearsToMean",
-          "actuallyMeans",
-          "correctTranslation",
-        ],
+        required: ["word", "appearsToMean", "actuallyMeans", "correctTranslation"],
       },
     },
     existsInBothLanguages: { type: Type.BOOLEAN, nullable: true },
@@ -115,47 +96,26 @@ const responseSchema = {
       required: ["source", "target"],
     },
   },
-  required: [
-    "detectedLanguage",
-    "input",
-    "sourceLanguage",
-    "targetLanguage",
-    "usageExamples",
-  ],
+  required: ["detectedLanguage", "input", "sourceLanguage", "targetLanguage", "usageExamples"],
 }
 
 export async function POST(request: NextRequest) {
   const { query, languageA, languageB } = await request.json()
 
   if (typeof query !== "string" || query.trim().length < 2) {
-    return NextResponse.json(
-      { error: "Query must be at least 2 characters" },
-      { status: 400 },
-    )
+    return NextResponse.json({ error: "Query must be at least 2 characters" }, { status: 400 })
   }
 
   if (query.trim().length > 200) {
-    return NextResponse.json(
-      { error: "Query must be at most 200 characters" },
-      { status: 400 },
-    )
+    return NextResponse.json({ error: "Query must be at most 200 characters" }, { status: 400 })
   }
 
-  if (
-    !validLanguageCodes.has(languageA) ||
-    !validLanguageCodes.has(languageB)
-  ) {
-    return NextResponse.json(
-      { error: "Invalid language codes" },
-      { status: 400 },
-    )
+  if (!validLanguageCodes.has(languageA) || !validLanguageCodes.has(languageB)) {
+    return NextResponse.json({ error: "Invalid language codes" }, { status: 400 })
   }
 
   if (languageA === languageB) {
-    return NextResponse.json(
-      { error: "Languages must be different" },
-      { status: 400 },
-    )
+    return NextResponse.json({ error: "Languages must be different" }, { status: 400 })
   }
 
   try {
@@ -173,10 +133,7 @@ export async function POST(request: NextRequest) {
 
     const text = response.text
     if (!text) {
-      return NextResponse.json(
-        { error: "No response from AI" },
-        { status: 500 },
-      )
+      return NextResponse.json({ error: "No response from AI" }, { status: 500 })
     }
 
     const parsed: DictionaryResponse = JSON.parse(text)
@@ -184,8 +141,7 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("Lookup error:", error)
 
-    const message =
-      error instanceof Error ? error.message : "Internal server error"
+    const message = error instanceof Error ? error.message : "Internal server error"
 
     if (message.includes("429") || message.includes("RESOURCE_EXHAUSTED")) {
       return NextResponse.json(
@@ -197,15 +153,9 @@ export async function POST(request: NextRequest) {
     }
 
     if (error instanceof SyntaxError) {
-      return NextResponse.json(
-        { error: "Failed to parse AI response" },
-        { status: 500 },
-      )
+      return NextResponse.json({ error: "Failed to parse AI response" }, { status: 500 })
     }
 
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 },
-    )
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }

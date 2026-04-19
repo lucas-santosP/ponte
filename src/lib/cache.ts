@@ -3,11 +3,7 @@ import type { DictionaryResponse } from "./types"
 
 const CACHE_VERSION = 2
 
-function buildCacheKey(
-  query: string,
-  langA: string,
-  langB: string,
-): string {
+function buildCacheKey(query: string, langA: string, langB: string): string {
   return `ponte:v${CACHE_VERSION}:${query.toLowerCase().trim()}:${langA}:${langB}`
 }
 

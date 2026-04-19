@@ -18,12 +18,8 @@ function UsageExamples({ examples }: UsageExamplesProps) {
             key={i}
             className="grid grid-cols-1 gap-1 rounded-lg bg-gray-50 p-3 sm:grid-cols-2 sm:gap-4 dark:bg-gray-850"
           >
-            <p className="text-sm text-gray-700 dark:text-gray-300">
-              {ex.original}
-            </p>
-            <p className="text-sm text-gray-500 italic dark:text-gray-400">
-              {ex.translated}
-            </p>
+            <p className="text-sm text-gray-700 dark:text-gray-300">{ex.original}</p>
+            <p className="text-sm text-gray-500 italic dark:text-gray-400">{ex.translated}</p>
           </div>
         ))}
       </div>

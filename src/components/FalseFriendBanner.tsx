@@ -25,21 +25,17 @@ function FalseFriendBanner({ falseFriends }: FalseFriendBannerProps) {
           <path d="M12 9v4" />
           <path d="M12 17h.01" />
         </svg>
-        <h4 className="text-sm font-semibold text-amber-700 dark:text-amber-300">
-          False Friend Alert
-        </h4>
+        <h4 className="text-sm font-semibold text-amber-700 dark:text-amber-300">False Friend Alert</h4>
       </div>
       <div className="space-y-2">
         {falseFriends.map((ff, i) => (
           <p key={i} className="text-sm text-amber-800 dark:text-amber-200">
-            <strong>"{ff.word}"</strong> looks like it means{" "}
-            <em>"{ff.appearsToMean}"</em>, but it actually means{" "}
+            <strong>"{ff.word}"</strong> looks like it means <em>"{ff.appearsToMean}"</em>, but it actually means{" "}
             <em>"{ff.actuallyMeans}"</em>.
             {ff.correctTranslation && (
               <span>
                 {" "}
-                The correct translation is{" "}
-                <strong>"{ff.correctTranslation}"</strong>.
+                The correct translation is <strong>"{ff.correctTranslation}"</strong>.
               </span>
             )}
           </p>

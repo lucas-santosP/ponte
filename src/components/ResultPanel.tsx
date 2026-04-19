@@ -9,9 +9,7 @@ interface ResultPanelProps {
   inputWord: string
 }
 
-function isTargetResult(
-  data: LanguageResult | TargetLanguageResult,
-): data is TargetLanguageResult {
+function isTargetResult(data: LanguageResult | TargetLanguageResult): data is TargetLanguageResult {
   return "translations" in data
 }
 
@@ -26,43 +24,26 @@ const defBorderStyles: Record<PanelColor, string> = {
 }
 
 const badgeStyles: Record<PanelColor, string> = {
-  indigo:
-    "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300",
-  emerald:
-    "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300",
+  indigo: "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300",
+  emerald: "bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300",
 }
 
 const detectedStyles: Record<PanelColor, string> = {
-  indigo:
-    "bg-indigo-100 text-indigo-600 dark:bg-indigo-900/50 dark:text-indigo-400",
-  emerald:
-    "bg-emerald-100 text-emerald-600 dark:bg-emerald-900/50 dark:text-emerald-400",
+  indigo: "bg-indigo-100 text-indigo-600 dark:bg-indigo-900/50 dark:text-indigo-400",
+  emerald: "bg-emerald-100 text-emerald-600 dark:bg-emerald-900/50 dark:text-emerald-400",
 }
 
-function DefinitionItem({
-  def,
-  color,
-}: {
-  def: Definition
-  color: PanelColor
-}) {
+function DefinitionItem({ def, color }: { def: Definition; color: PanelColor }) {
   return (
     <div className={`border-l-2 pl-3 ${defBorderStyles[color]}`}>
-      <span
-        className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${badgeStyles[color]}`}
-      >
+      <span className={`inline-block rounded-full px-2 py-0.5 text-xs font-medium ${badgeStyles[color]}`}>
         {def.partOfSpeech}
       </span>
-      <p className="mt-1 text-sm text-gray-700 dark:text-gray-300">
-        {def.meaning}
-      </p>
+      <p className="mt-1 text-sm text-gray-700 dark:text-gray-300">{def.meaning}</p>
       {def.examples.length > 0 && (
         <ul className="mt-1.5 space-y-0.5">
           {def.examples.map((ex, i) => (
-            <li
-              key={i}
-              className="text-xs text-gray-500 italic dark:text-gray-400"
-            >
+            <li key={i} className="text-xs text-gray-500 italic dark:text-gray-400">
               &ldquo;{ex}&rdquo;
             </li>
           ))}
@@ -77,9 +58,7 @@ function TagList({ label, items }: { label: string; items: string[] }) {
 
   return (
     <div>
-      <h4 className="mb-1.5 text-xs font-semibold tracking-wide text-gray-500 uppercase dark:text-gray-400">
-        {label}
-      </h4>
+      <h4 className="mb-1.5 text-xs font-semibold tracking-wide text-gray-500 uppercase dark:text-gray-400">{label}</h4>
       <div className="flex flex-wrap gap-1.5">
         {items.map((item) => (
           <span
@@ -128,27 +107,40 @@ function CopyableHeading({
           {word}
           <span className="text-gray-300 opacity-0 transition-opacity group-hover:opacity-100 dark:text-gray-600">
             {copied ? (
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-emerald-500 dark:text-emerald-400">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="text-emerald-500 dark:text-emerald-400"
+              >
                 <path d="M20 6 9 17l-5-5" />
               </svg>
             ) : (
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <rect width="14" height="14" x="8" y="8" rx="2" />
                 <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
               </svg>
             )}
           </span>
         </button>
-        <span
-          className={`rounded-full px-2 py-0.5 text-xs font-medium ${detectedStyles[color]}`}
-        >
-          {label}
-        </span>
+        <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${detectedStyles[color]}`}>{label}</span>
       </div>
       {alternatives.length > 0 && (
-        <p className="mt-0.5 text-sm text-gray-500 dark:text-gray-400">
-          also: {alternatives.join(", ")}
-        </p>
+        <p className="mt-0.5 text-sm text-gray-500 dark:text-gray-400">also: {alternatives.join(", ")}</p>
       )}
     </div>
   )
@@ -156,9 +148,7 @@ function CopyableHeading({
 
 function ResultPanel({ data, isSource, color, inputWord }: ResultPanelProps) {
   const isTarget = isTargetResult(data)
-  const headingWord = isTarget
-    ? data.translations[0] ?? inputWord
-    : inputWord
+  const headingWord = isTarget ? (data.translations[0] ?? inputWord) : inputWord
   const alternativeTranslations = isTarget ? data.translations.slice(1) : []
 
   return (
@@ -185,9 +175,7 @@ function ResultPanel({ data, isSource, color, inputWord }: ResultPanelProps) {
 
       <div className="mt-auto space-y-3">
         <TagList label="Synonyms" items={data.synonyms} />
-        {"antonyms" in data && (
-          <TagList label="Antonyms" items={(data as LanguageResult).antonyms} />
-        )}
+        {"antonyms" in data && <TagList label="Antonyms" items={(data as LanguageResult).antonyms} />}
         <TagList label="Related" items={data.relatedWords} />
       </div>
     </div>

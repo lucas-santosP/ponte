@@ -1,9 +1,6 @@
 import { getLanguageByCode } from "@/lib/languages"
 
-export function buildSystemPrompt(
-  langCodeA: string,
-  langCodeB: string,
-): string {
+export function buildSystemPrompt(langCodeA: string, langCodeB: string): string {
   const langA = getLanguageByCode(langCodeA)
   const langB = getLanguageByCode(langCodeB)
   const nameA = langA?.name ?? langCodeA

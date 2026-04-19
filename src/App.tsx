@@ -68,10 +68,7 @@ function App() {
   )
 
   function handleHistorySelect(entry: HistoryEntry) {
-    if (
-      entry.languageA !== pair.languageA ||
-      entry.languageB !== pair.languageB
-    ) {
+    if (entry.languageA !== pair.languageA || entry.languageB !== pair.languageB) {
       updatePair({
         languageA: entry.languageA,
         languageB: entry.languageB,
@@ -82,14 +79,8 @@ function App() {
     setShowHistory(false)
   }
 
-  const sourceData =
-    result?.detectedLanguage === pair.languageA
-      ? result.sourceLanguage
-      : result?.targetLanguage
-  const targetData =
-    result?.detectedLanguage === pair.languageA
-      ? result.targetLanguage
-      : result?.sourceLanguage
+  const sourceData = result?.detectedLanguage === pair.languageA ? result.sourceLanguage : result?.targetLanguage
+  const targetData = result?.detectedLanguage === pair.languageA ? result.targetLanguage : result?.sourceLanguage
 
   return (
     <div className="flex min-h-svh flex-col bg-gray-50 dark:bg-gray-950">
@@ -128,11 +119,7 @@ function App() {
         </div>
 
         {result?.correctedInput && (
-          <SpellSuggestion
-            original={result.input}
-            corrected={result.correctedInput}
-            onAccept={handleQueryChange}
-          />
+          <SpellSuggestion original={result.input} corrected={result.correctedInput} onAccept={handleQueryChange} />
         )}
 
         {error && (
@@ -202,8 +189,7 @@ function App() {
           <>
             {result.existsInBothLanguages && (
               <div className="w-full rounded-lg border border-purple-200 bg-purple-50 px-4 py-2.5 text-sm text-purple-700 dark:border-purple-800 dark:bg-purple-950/30 dark:text-purple-300">
-                This word exists in both languages with potentially different
-                meanings.
+                This word exists in both languages with potentially different meanings.
               </div>
             )}
 
@@ -211,9 +197,7 @@ function App() {
               <FalseFriendBanner falseFriends={result.falseFriends} />
             )}
 
-            {result.usageExamples.length > 0 && (
-              <UsageExamples examples={result.usageExamples} />
-            )}
+            {result.usageExamples.length > 0 && <UsageExamples examples={result.usageExamples} />}
 
             {result.pronunciation && (
               <div className="w-full rounded-xl border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800">
@@ -223,18 +207,12 @@ function App() {
                 <div className="flex gap-8 text-sm text-gray-600 dark:text-gray-300">
                   {result.pronunciation.source && (
                     <span>
-                      Source:{" "}
-                      <span className="font-mono">
-                        {result.pronunciation.source}
-                      </span>
+                      Source: <span className="font-mono">{result.pronunciation.source}</span>
                     </span>
                   )}
                   {result.pronunciation.target && (
                     <span>
-                      Target:{" "}
-                      <span className="font-mono">
-                        {result.pronunciation.target}
-                      </span>
+                      Target: <span className="font-mono">{result.pronunciation.target}</span>
                     </span>
                   )}
                 </div>
@@ -245,16 +223,8 @@ function App() {
 
         {!result && !isLoading && !error && query.length < 2 && (
           <div className="mt-16 text-center">
-            <img
-              src="/logo.png"
-              alt=""
-              width={64}
-              height={64}
-              className="mx-auto"
-            />
-            <p className="mt-3 text-lg font-medium text-gray-400 dark:text-gray-500">
-              Type a word to bridge languages
-            </p>
+            <img src="/logo.png" alt="" width={64} height={64} className="mx-auto" />
+            <p className="mt-3 text-lg font-medium text-gray-400 dark:text-gray-500">Type a word to bridge languages</p>
             <p className="mt-1 text-sm text-gray-300 dark:text-gray-600">
               Works with any word in either of your selected languages
             </p>

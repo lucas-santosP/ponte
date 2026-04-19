@@ -1,11 +1,6 @@
 import { useState, useCallback } from "react"
 import type { HistoryEntry } from "@/lib/types"
-import {
-  getHistory,
-  addHistoryEntry,
-  removeHistoryEntry,
-  clearHistory as clearStoredHistory,
-} from "@/lib/settings"
+import { getHistory, addHistoryEntry, removeHistoryEntry, clearHistory as clearStoredHistory } from "@/lib/settings"
 
 interface UseSearchHistoryReturn {
   history: HistoryEntry[]
@@ -22,17 +17,12 @@ export function useSearchHistory(): UseSearchHistoryReturn {
     setHistory(getHistory())
   }, [])
 
-  const addEntry = useCallback(
-    function addToHistory(entry: Omit<HistoryEntry, "timestamp">) {
-      addHistoryEntry(entry)
-      setHistory(getHistory())
-    },
-    [],
-  )
+  const addEntry = useCallback(function addToHistory(entry: Omit<HistoryEntry, "timestamp">) {
+    addHistoryEntry(entry)
+    setHistory(getHistory())
+  }, [])
 
-  const removeEntry = useCallback(function removeFromHistory(
-    timestamp: number,
-  ) {
+  const removeEntry = useCallback(function removeFromHistory(timestamp: number) {
     removeHistoryEntry(timestamp)
     setHistory(getHistory())
   }, [])

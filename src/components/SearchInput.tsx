@@ -8,13 +8,7 @@ interface SearchInputProps {
   isLoading: boolean
 }
 
-function SearchInput({
-  value,
-  onChange,
-  onFocus,
-  onBlur,
-  isLoading,
-}: SearchInputProps) {
+function SearchInput({ value, onChange, onFocus, onBlur, isLoading }: SearchInputProps) {
   const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(function setupKeyboardShortcut() {

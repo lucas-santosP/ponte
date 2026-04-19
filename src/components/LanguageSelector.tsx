@@ -17,13 +17,7 @@ const colorStyles: Record<PanelColor, string> = {
     "border-emerald-200 bg-emerald-50/50 hover:border-emerald-300 focus:border-emerald-500 focus:ring-emerald-500/20 dark:border-emerald-800 dark:bg-emerald-950/30 dark:hover:border-emerald-700",
 }
 
-function LanguageSelector({
-  value,
-  otherValue,
-  onChange,
-  onSwap,
-  color,
-}: LanguageSelectorProps) {
+function LanguageSelector({ value, otherValue, onChange, onSwap, color }: LanguageSelectorProps) {
   function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const code = e.target.value
     if (code === otherValue) {

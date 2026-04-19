@@ -75,22 +75,16 @@ export function useDictionaryLookup({
 
           if (!response.ok) {
             const body = await response.json().catch(() => ({}))
-            throw new Error(
-              body.error ?? `Request failed with status ${response.status}`,
-            )
+            throw new Error(body.error ?? `Request failed with status ${response.status}`)
           }
 
           const data: DictionaryResponse = await response.json()
           setResult(data)
 
-          await setCachedResult(trimmed, languageA, languageB, data).catch(
-            () => {},
-          )
+          await setCachedResult(trimmed, languageA, languageB, data).catch(() => {})
         } catch (err) {
           if (err instanceof DOMException && err.name === "AbortError") return
-          setError(
-            err instanceof Error ? err.message : "Something went wrong",
-          )
+          setError(err instanceof Error ? err.message : "Something went wrong")
           setResult(null)
         } finally {
           setIsLoading(false)

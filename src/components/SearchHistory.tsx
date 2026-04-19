@@ -21,20 +21,13 @@ function formatTime(timestamp: number): string {
   return `${days}d ago`
 }
 
-function SearchHistory({
-  history,
-  onSelect,
-  onRemove,
-  onClearAll,
-}: SearchHistoryProps) {
+function SearchHistory({ history, onSelect, onRemove, onClearAll }: SearchHistoryProps) {
   if (history.length === 0) return null
 
   return (
     <div className="absolute top-full right-0 left-0 z-50 mt-1 max-h-80 overflow-y-auto rounded-xl border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800">
       <div className="flex items-center justify-between border-b border-gray-100 px-4 py-2.5 dark:border-gray-700">
-        <span className="text-xs font-semibold tracking-wide text-gray-400 uppercase">
-          Recent lookups
-        </span>
+        <span className="text-xs font-semibold tracking-wide text-gray-400 uppercase">Recent lookups</span>
         <button
           onMouseDown={(e) => {
             e.preventDefault()
@@ -61,15 +54,11 @@ function SearchHistory({
             }}
           >
             <span className="text-sm">{detected?.flag ?? ""}</span>
-            <span className="flex-1 truncate text-sm font-medium text-gray-700 dark:text-gray-200">
-              {entry.query}
-            </span>
+            <span className="flex-1 truncate text-sm font-medium text-gray-700 dark:text-gray-200">{entry.query}</span>
             <span className="text-xs text-gray-400">
               {langA?.flag} {langB?.flag}
             </span>
-            <span className="text-xs text-gray-400">
-              {formatTime(entry.timestamp)}
-            </span>
+            <span className="text-xs text-gray-400">{formatTime(entry.timestamp)}</span>
             <button
               onMouseDown={(e) => {
                 e.preventDefault()
