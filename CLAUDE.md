@@ -14,7 +14,7 @@ The key differentiator from Google Translate / DeepL is **zero language switchin
 - **Styling:** Tailwind CSS v4 (via `@tailwindcss/postcss`)
 - **Linting/Formatting:** ESLint + Prettier
 - **AI engine:** Gemini 2.5 Flash via `@google/genai` — single API call per lookup returns all linguistic data as structured JSON (free tier: 1,500 req/day, 15 RPM)
-- **API:** Next.js Route Handlers (`app/api/lookup/route.ts`)
+- **API:** Next.js Route Handlers (`src/app/api/lookup/route.ts`)
 - **Client caching:** IndexedDB via `idb-keyval` — keyed by `query:langA:langB`
 - **Client storage:** localStorage for language pair preference and search history
 - **Deployment:** Vercel
@@ -38,36 +38,35 @@ Next.js handles both the frontend and the `/api/lookup` route — no separate AP
 ## Architecture
 
 ```
-Next.js App (App Router)
-  ├── app/layout.tsx — Root layout with metadata
-  ├── app/page.tsx — Renders the client-side App component
-  ├── app/globals.css — Tailwind imports and theme tokens
+Next.js App (App Router) — everything under src/
+  ├── src/app/layout.tsx — Root layout with metadata
+  ├── src/app/page.tsx — Renders the client-side App component
+  ├── src/app/globals.css — Tailwind imports and theme tokens
   │
-  ├── app/api/lookup/route.ts — POST handler (server-side)
+  ├── src/app/api/lookup/route.ts — POST handler (server-side)
   │     ├── Validate input (2-200 chars, valid language codes, different languages)
   │     ├── Build dynamic system prompt for the language pair
   │     ├── Call Gemini 2.5 Flash with structured output schema
   │     └── Return structured DictionaryResponse JSON
   │
-  └── src/ — Client-side code ("use client")
-        ├── App.tsx — Root client component: wires all components together
-        ├── components/ — UI components
-        ├── hooks/ — useDictionaryLookup, useSearchHistory
-        └── lib/ — types, languages, prompt builder, cache, settings
+  ├── src/App.tsx — Root client component: wires all components together
+  ├── src/components/ — UI components
+  ├── src/hooks/ — useDictionaryLookup, useSearchHistory
+  └── src/lib/ — types, languages, prompt builder, cache, settings
 ```
 
 ## Project Structure
 
 ```
 ponte/
-├── app/
-│   ├── layout.tsx             — Root layout, metadata, global CSS import
-│   ├── page.tsx               — Renders the client-side App component
-│   ├── globals.css            — Tailwind imports and theme tokens
-│   └── api/
-│       └── lookup/
-│           └── route.ts       — Next.js Route Handler for dictionary lookups
 ├── src/
+│   ├── app/
+│   │   ├── layout.tsx         — Root layout, metadata, global CSS import
+│   │   ├── page.tsx           — Renders the client-side App component
+│   │   ├── globals.css        — Tailwind imports and theme tokens
+│   │   └── api/
+│   │       └── lookup/
+│   │           └── route.ts   — Next.js Route Handler for dictionary lookups
 │   ├── App.tsx                — Root client component ("use client")
 │   ├── components/
 │   │   ├── LanguageSelector   — Dual language dropdown pair with swap

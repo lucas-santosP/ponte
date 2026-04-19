@@ -22,13 +22,13 @@ The app auto-detects which language you typed in. No toggle, no swap, no dropdow
 
 ## What Makes Ponte Different
 
-| Existing tools | Ponte |
-|---|---|
-| You pick source → target every time | You pick once, type in either language |
-| Flat translation output | Rich dual-pane: definitions + synonyms + examples on both sides |
-| No false friend warnings | Warns you about words that look similar but mean different things |
-| No spell correction in context | Suggests corrections considering both languages |
-| Built for translating paragraphs | Built for exploring individual words and short phrases |
+| Existing tools                      | Ponte                                                             |
+| ----------------------------------- | ----------------------------------------------------------------- |
+| You pick source → target every time | You pick once, type in either language                            |
+| Flat translation output             | Rich dual-pane: definitions + synonyms + examples on both sides   |
+| No false friend warnings            | Warns you about words that look similar but mean different things |
+| No spell correction in context      | Suggests corrections considering both languages                   |
+| Built for translating paragraphs    | Built for exploring individual words and short phrases            |
 
 ## Target User
 
@@ -43,10 +43,12 @@ Anyone who is bilingual or actively learning a second language and needs frequen
 The core flow. The user types a word and gets full linguistic information in both languages.
 
 **Example:** User types "saudade" (Portuguese)
+
 - **Left panel (Portuguese):** Noun. A deep emotional state of nostalgic longing for something or someone absent. Synonyms: nostalgia, melancolia, anoranza. Examples: "Sinto saudade dos tempos de escola."
 - **Right panel (English):** Translations: longing, nostalgia, yearning. Definition of "longing": a strong, persistent desire or craving. Synonyms: yearning, pining, ache. Examples: "I feel a longing for my school days."
 
 **Example:** User types "resilience" (English)
+
 - **Left panel (English):** Noun. The capacity to withstand or recover quickly from difficulties. Synonyms: toughness, adaptability, grit.
 - **Right panel (Portuguese):** Translations: resiliencia. Definition, synonyms in Portuguese, examples.
 
@@ -55,10 +57,12 @@ The core flow. The user types a word and gets full linguistic information in bot
 Works with multi-word expressions and idioms, not just single words.
 
 **Example:** User types "break the ice"
+
 - **Left panel (English):** Idiomatic expression meaning to initiate conversation in an awkward social situation. Literal meaning: to physically break ice.
 - **Right panel (Portuguese):** Equivalent expression: "quebrar o gelo". Same idiom exists in Portuguese. Usage examples in both languages.
 
 **Example:** User types "ficar de molho"
+
 - **Left panel (Portuguese):** Informal expression meaning to rest or stay put, usually due to illness or recovery. Literal meaning: to soak.
 - **Right panel (English):** Translation: "to rest up", "to take it easy", "to lie low". No direct equivalent idiom — contextual translation provided.
 
@@ -67,11 +71,13 @@ Works with multi-word expressions and idioms, not just single words.
 When the user types a misspelled word, the app suggests corrections considering both languages.
 
 **Example:** User types "resilense"
+
 - A blue banner appears: **Showing results for "resilience"** (you typed "resilense")
 - The user can click "resilience" to confirm, or keep typing
 - Results are shown for the corrected word immediately
 
 **Example:** User types "comprimisso"
+
 - Suggests: "compromisso" (Portuguese for commitment/appointment)
 - If the typo is ambiguous between both languages, both suggestions appear
 
@@ -80,15 +86,18 @@ When the user types a misspelled word, the app suggests corrections considering 
 False friends are words that look similar between two languages but have completely different meanings. This is one of the most common traps for bilingual speakers. Ponte detects them and shows a prominent warning.
 
 **Example:** User types "pretend" (English)
+
 - English panel shows the definition: to act as if something is true when it is not
 - Portuguese panel shows the translation: "fingir"
 - **Amber warning banner:** "False friend: 'pretender' in Portuguese does NOT mean 'to pretend' — it means 'to intend' or 'to plan'. The correct Portuguese translation of 'pretend' is 'fingir'."
 
 **Example:** User types "actual" (English)
+
 - Translation to Portuguese: "real", "verdadeiro"
 - **Warning:** "'Atual' in Portuguese does NOT mean 'actual' — it means 'current' or 'present-day'. The correct Portuguese translation of 'actual' is 'real'."
 
 **Common PT-EN false friends this catches:**
+
 - "pretender" (PT: to intend) vs "pretend" (EN: to fake)
 - "atual" (PT: current) vs "actual" (EN: real)
 - "costume" (PT: habit/custom) vs "costume" (EN: clothing/disguise)
@@ -103,11 +112,13 @@ False friends are words that look similar between two languages but have complet
 Some words are spelled identically in both languages but may have different or identical meanings.
 
 **Example:** User types "pasta"
+
 - A purple info banner appears: "This word exists in both languages with potentially different meanings."
 - **Left panel (Portuguese):** Noun. 1. Folder, briefcase. 2. Paste, dough. "Coloque o documento na pasta."
 - **Right panel (English):** Noun. A dish of Italian origin made from dough. "I ordered pasta for dinner."
 
 **Example:** User types "hospital"
+
 - Both panels show the same meaning (medical facility)
 - A subtle indicator: "Same meaning in both languages" (cognate)
 
@@ -116,6 +127,7 @@ Some words are spelled identically in both languages but may have different or i
 Every lookup is saved locally so the user can revisit previous words without re-typing.
 
 **Flow:**
+
 - Click the search input when it's empty (or focus it)
 - A dropdown appears with recent lookups, most recent first
 - Each entry shows: the word, a flag for the detected language, the language pair used, and how long ago
@@ -130,6 +142,7 @@ Every lookup is saved locally so the user can revisit previous words without re-
 The user picks any two languages from the supported list. The pair is saved and persists across sessions.
 
 **Flow:**
+
 - Two dropdown selectors in the header — one for each language
 - A swap button between them to quickly flip the pair
 - Default: Portuguese and English
@@ -153,6 +166,7 @@ The app waits for meaningful input before making an API call.
 When the input isn't a word in either language and can't be corrected.
 
 **Example:** User types "xkzqwm"
+
 - The app shows: "No results found"
 - If the AI can suggest any remotely plausible words, it shows them
 - Otherwise, a clean message: "Try typing a word in either of your selected languages"
