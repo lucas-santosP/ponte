@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="40%" stop-color="#312e81"/>
+      <stop offset="100%" stop-color="#4338ca"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+    <linearGradient id="bridge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <linearGradient id="moon" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fef9c3"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="128" height="128" rx="28" fill="url(#sky)"/>
+
+  <!-- Moon crescent -->
+  <circle cx="100" cy="24" r="11" fill="url(#moon)"/>
+  <circle cx="105" cy="19" r="9.5" fill="url(#sky)"/>
+
+  <!-- Stars -->
+  <circle cx="18" cy="16" r="1.5" fill="#c7d2fe" opacity="0.9"/>
+  <circle cx="44" cy="11" r="1" fill="#c7d2fe" opacity="0.6"/>
+  <circle cx="72" cy="20" r="1.2" fill="#c7d2fe" opacity="0.7"/>
+  <circle cx="28" cy="34" r="0.8" fill="#c7d2fe" opacity="0.5"/>
+
+  <!-- Water area -->
+  <path d="M0 96 Q16 92 32 96 Q48 100 64 96 Q80 92 96 96 Q112 100 128 96 L128 128 Q128 128 100 128 L28 128 Q0 128 0 128 Z" fill="url(#water)" opacity="0.35"/>
+
+  <!-- Tower left - tall distinctive shape -->
+  <rect x="32" y="38" width="4" height="52" rx="1.5" fill="url(#bridge)"/>
+  <rect x="28" y="38" width="12" height="5" rx="1.5" fill="url(#bridge)"/>
+  <rect x="29" y="50" width="10" height="3" rx="1" fill="#f59e0b" opacity="0.8"/>
+
+  <!-- Tower right -->
+  <rect x="92" y="38" width="4" height="52" rx="1.5" fill="url(#bridge)"/>
+  <rect x="88" y="38" width="12" height="5" rx="1.5" fill="url(#bridge)"/>
+  <rect x="89" y="50" width="10" height="3" rx="1" fill="#f59e0b" opacity="0.8"/>
+
+  <!-- Road deck -->
+  <rect x="10" y="84" width="108" height="5" rx="2" fill="url(#bridge)"/>
+
+  <!-- Main cables - iconic swooping catenary -->
+  <path d="M10 58 Q22 72 34 40" fill="none" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M34 40 Q64 68 94 40" fill="none" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M94 40 Q106 72 118 58" fill="none" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Vertical suspender cables -->
+  <line x1="18" y1="63" x2="18" y2="84" stroke="#fcd34d" stroke-width="1.2" opacity="0.6"/>
+  <line x1="26" y1="57" x2="26" y2="84" stroke="#fcd34d" stroke-width="1.2" opacity="0.6"/>
+  <line x1="44" y1="47" x2="44" y2="84" stroke="#fcd34d" stroke-width="1.2" opacity="0.6"/>
+  <line x1="54" y1="54" x2="54" y2="84" stroke="#fcd34d" stroke-width="1.2" opacity="0.6"/>
+  <line x1="64" y1="58" x2="64" y2="84" stroke="#fcd34d" stroke-width="1.2" opacity="0.6"/>
+  <line x1="74" y1="54" x2="74" y2="84" stroke="#fcd34d" stroke-width="1.2" opacity="0.6"/>
+  <line x1="84" y1="47" x2="84" y2="84" stroke="#fcd34d" stroke-width="1.2" opacity="0.6"/>
+  <line x1="102" y1="57" x2="102" y2="84" stroke="#fcd34d" stroke-width="1.2" opacity="0.6"/>
+  <line x1="110" y1="63" x2="110" y2="84" stroke="#fcd34d" stroke-width="1.2" opacity="0.6"/>
+
+  <!-- Water reflection -->
+  <rect x="20" y="93" width="88" height="2" rx="1" fill="#fbbf24" opacity="0.12"/>
+  <rect x="30" y="98" width="68" height="1.5" rx="0.75" fill="#fbbf24" opacity="0.08"/>
+</svg>
