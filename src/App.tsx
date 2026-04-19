@@ -94,14 +94,16 @@ function App() {
   return (
     <div className="flex min-h-svh flex-col bg-gray-50 dark:bg-gray-950">
       <header className="sticky top-0 z-40 border-b border-gray-200 bg-white/80 backdrop-blur-sm dark:border-gray-800 dark:bg-gray-900/80">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
+        <div className="relative mx-auto flex max-w-5xl items-center justify-center px-4 py-3">
           <h1 className="flex items-center gap-2 text-xl font-bold">
             <img src="/logo.png" alt="" width={28} height={28} />
             <span className="text-indigo-600 dark:text-indigo-400">Ponte</span>
           </h1>
 
           {mounted && (
-            <ThemeToggle theme={theme} onToggle={toggleTheme} />
+            <div className="absolute right-3">
+              <ThemeToggle theme={theme} onToggle={toggleTheme} />
+            </div>
           )}
         </div>
       </header>
@@ -124,6 +126,14 @@ function App() {
             />
           )}
         </div>
+
+        {result?.correctedInput && (
+          <SpellSuggestion
+            original={result.input}
+            corrected={result.correctedInput}
+            onAccept={handleQueryChange}
+          />
+        )}
 
         {error && (
           <div className="w-full rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-800 dark:bg-red-950/30 dark:text-red-300">
@@ -190,14 +200,6 @@ function App() {
 
         {result && (
           <>
-            {result.correctedInput && (
-              <SpellSuggestion
-                original={result.input}
-                corrected={result.correctedInput}
-                onAccept={handleQueryChange}
-              />
-            )}
-
             {result.existsInBothLanguages && (
               <div className="w-full rounded-lg border border-purple-200 bg-purple-50 px-4 py-2.5 text-sm text-purple-700 dark:border-purple-800 dark:bg-purple-950/30 dark:text-purple-300">
                 This word exists in both languages with potentially different
@@ -243,7 +245,13 @@ function App() {
 
         {!result && !isLoading && !error && query.length < 2 && (
           <div className="mt-16 text-center">
-            <img src="/logo.png" alt="" width={64} height={64} className="mx-auto" />
+            <img
+              src="/logo.png"
+              alt=""
+              width={64}
+              height={64}
+              className="mx-auto"
+            />
             <p className="mt-3 text-lg font-medium text-gray-400 dark:text-gray-500">
               Type a word to bridge languages
             </p>

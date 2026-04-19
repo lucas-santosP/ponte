@@ -33,7 +33,7 @@ function SearchInput({
   }, [])
 
   return (
-    <div className="relative w-full max-w-2xl">
+    <div className="relative w-full">
       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
         <svg
           width="20"
