@@ -13,11 +13,10 @@ The key differentiator from Google Translate / DeepL is **zero language switchin
 - **Package manager:** Bun
 - **Styling:** Tailwind CSS v4 (via `@tailwindcss/postcss`)
 - **Linting/Formatting:** ESLint + Prettier
-- **AI engine:** Gemini 2.5 Flash via `@google/genai` — single API call per lookup returns all linguistic data as structured JSON (free tier: 1,500 req/day, 15 RPM)
+- **AI engine:** Gemini 2.5 Flash via `@google/genai` — single API call per lookup returns all linguistic data as structured JSON
 - **API:** Next.js Route Handlers (`src/app/api/lookup/route.ts`)
 - **Client caching:** IndexedDB via `idb-keyval` — keyed by `query:langA:langB`
 - **Client storage:** localStorage for language pair preference and search history
-- **Deployment:** Vercel
 
 ## Running Locally
 
